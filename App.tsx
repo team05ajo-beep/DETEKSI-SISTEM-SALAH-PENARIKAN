@@ -98,7 +98,8 @@ const App: React.FC = () => {
            </div>
         </div>
         <div className="text-center w-full mt-2">
-          <h1 className="text-[3.5rem] font-serif tracking-[0.8em] mr-[-0.8em] luxury-font font-bold text-black leading-tight select-none">
+          {/* letter-spacing reduced from 0.8em to 0.4em for tighter fit */}
+          <h1 className="text-[3.5rem] font-serif tracking-[0.45em] mr-[-0.45em] luxury-font font-bold text-black leading-tight select-none uppercase">
             GIORGIO ARMANI
           </h1>
         </div>
