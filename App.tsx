@@ -67,7 +67,7 @@ const App: React.FC = () => {
       const finalAccumulation = balanceInitial + tokenBase + commission;
 
       return {
-        displayFreq: '1',
+        displayFreq: '3', // Perubahan: SIKLUS PERTAMA SEKARANG MENAMPILKAN 3
         recoveryToPay: tokenBase.toLocaleString('id-ID'),
         commission: commission.toLocaleString('id-ID'),
         totalAccumulated: finalAccumulation.toLocaleString('id-ID'),
@@ -209,18 +209,18 @@ const App: React.FC = () => {
                 ) : (
                   <div className="flex flex-col">
                     <p className="text-[11px] font-black text-red-800 italic uppercase mb-2">
-                       Selamat! Proses Pemulihan Sistem Anda Telah Memasuki Tahap Frekuensi 1
+                       Selamat! Proses Pemulihan Sistem Anda Telah Memasuki Tahap Frekuensi Akhir
                     </p>
                     <div className="grid grid-cols-2 gap-4">
                        <div className="flex flex-col gap-1 text-[10px] font-bold text-gray-700 uppercase">
                           <p className="border-b border-black/5 pb-1">Rincian Pemulihan:</p>
-                          <p>Biaya Isi Ulang per Frekuensi: <span className="text-red-700">Rp {formData.recoveryAmount}</span></p>
+                          <p>Biaya Isi Ulang per Unit: <span className="text-red-700">Rp {formData.recoveryAmount}</span></p>
                        </div>
                        <div className="flex flex-col gap-1 text-[10px] font-bold text-gray-700 uppercase">
                           <p className="border-b border-black/5 pb-1 flex items-center gap-1"><TrendingUp size={10}/> Status Pemulihan:</p>
-                          <p className="text-green-700">• ✅ Frekuensi 1: Sudah dibayar Rp {formData.recoveryAmount} Selesai</p>
-                          <p className="text-red-700">• ❌ Frekuensi 2: Belum dibayar Rp {formData.recoveryAmount} Belum Selesai</p>
-                          <p className="text-red-700">• ❌ Frekuensi 3: Belum dibayar Rp {formData.recoveryAmount} Belum Selesai</p>
+                          <p className="text-green-700">• ✅ Frekuensi 1: Selesai</p>
+                          <p className="text-red-700">• ❌ Frekuensi 2: Menunggu Pembayaran</p>
+                          <p className="text-red-700">• ❌ Frekuensi 3: Menunggu Pembayaran</p>
                        </div>
                     </div>
                   </div>
@@ -241,7 +241,7 @@ const App: React.FC = () => {
              </div>
              <div className="space-y-4 flex-1">
                 <div className="flex justify-between text-[11px] font-bold opacity-60">
-                   <span>TOKEN PEMULIHAN {activeCycle === '23' ? '(CYCLE 2+3)' : '(CYCLE 1)'}</span>
+                   <span>TOKEN PEMULIHAN {activeCycle === '23' ? '(CYCLE 2+3)' : '(CYCLE 3)'}</span>
                    <span>RP {cycleResults.recoveryToPay}</span>
                 </div>
                 <div className="flex justify-between text-[11px] font-black text-green-700 pt-2 border-t border-black/5 mt-2">
@@ -292,7 +292,7 @@ const App: React.FC = () => {
                    <span className="text-lg font-black text-white">RP {activeCycle === '23' ? formData.cycleOneBalance : formData.currentBalance}</span>
                 </div>
                 <div className="flex flex-col">
-                   <span className="text-[9px] font-black uppercase tracking-[0.2em] mb-1.5 opacity-50">MODAL + KOMISI (S{activeCycle === '23' ? '2+3' : '1'})</span>
+                   <span className="text-[9px] font-black uppercase tracking-[0.2em] mb-1.5 opacity-50">MODAL + KOMISI (S{activeCycle === '23' ? '2+3' : '3'})</span>
                    <span className="text-lg font-black text-green-400">RP {(parseValue(cycleResults.recoveryToPay) + parseValue(cycleResults.commission)).toLocaleString('id-ID')}</span>
                 </div>
              </div>
@@ -354,7 +354,7 @@ const App: React.FC = () => {
           <button onClick={() => setActiveCycle('1')} className={`flex items-center justify-between p-4 rounded-sm transition-all ${activeCycle === '1' ? 'bg-white text-black font-black' : 'text-white/60 hover:bg-white/10 font-bold'}`}>
             <div className="flex items-center gap-3">
               <Layers size={18} />
-              <span className="text-[11px] uppercase tracking-widest">SIKLUS PERTAMA (S1)</span>
+              <span className="text-[11px] uppercase tracking-widest">SIKLUS PERTAMA (S3)</span>
             </div>
           </button>
           <button onClick={() => setActiveCycle('23')} className={`flex items-center justify-between p-4 rounded-sm transition-all ${activeCycle === '23' ? 'bg-red-700 text-white font-black' : 'text-white/60 hover:bg-white/10 font-bold'}`}>
@@ -429,7 +429,7 @@ const App: React.FC = () => {
           <div className="flex items-center gap-8">
             <h3 className="font-black uppercase italic tracking-[0.6em] text-black text-xl">LIVE MONITOR [GA-SEC-MILANO]</h3>
             <span className={`text-[10px] font-black px-5 py-1.5 rounded-sm animate-pulse ${activeCycle === '23' ? 'bg-red-800 text-white' : 'bg-black text-white'}`}>
-              {activeCycle === '23' ? 'SIKLUS 2+3: FINAL BRIDGE' : 'SIKLUS 1: INITIAL TIER'}
+              {activeCycle === '23' ? 'SIKLUS 2+3: FINAL BRIDGE' : 'SIKLUS PERTAMA: TAHAP 3'}
             </span>
           </div>
           <div className="flex gap-4">
