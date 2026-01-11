@@ -17,7 +17,8 @@ import {
   ShieldAlert,
   History,
   Coins,
-  Layers
+  Layers,
+  Printer
 } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -78,13 +79,10 @@ const App: React.FC = () => {
 
   const triggerScreenshotView = () => {
     setIsScreenshotMode(true);
-    setTimeout(() => {
-      window.print();
-    }, 800);
   };
 
   const ReportDashboard = () => (
-    <div id="print-area" className="bg-[#fcfcfc] w-[1508px] h-[800px] flex flex-col font-['Inter'] text-black relative p-8 border-[1px] border-black/5 shadow-2xl overflow-hidden mx-auto box-border">
+    <div id="print-area" className="bg-[#fcfcfc] w-[1508px] h-[800px] flex flex-col font-['Inter'] text-black relative p-8 border-[1px] border-black/5 shadow-2xl overflow-hidden mx-auto box-border transition-all duration-500">
       <header className="bg-white px-10 py-4 z-30 w-full shadow-sm mb-6 border border-black/5 rounded-sm flex flex-col items-center relative">
         <div className="w-full flex justify-between items-center mb-1 absolute top-4 left-0 px-10">
            <div className="flex flex-col gap-1 opacity-40">
@@ -318,7 +316,7 @@ const App: React.FC = () => {
   if (isScreenshotMode) {
     return (
       <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center p-10 overflow-auto">
-        <div className="no-print w-full bg-black text-white p-5 flex justify-between items-center fixed top-0 z-50 border-b border-white/10 shadow-2xl">
+        <div className="no-print w-full bg-black text-white p-5 flex justify-between items-center fixed top-0 left-0 z-50 border-b border-white/10 shadow-2xl">
           <button onClick={() => setIsScreenshotMode(false)} className="flex items-center gap-4 font-black uppercase text-[12px] border border-white/30 px-8 py-3 hover:bg-white hover:text-black transition-all">
             <ArrowLeft size={18} /> KELUAR PRATINJAU
           </button>
@@ -327,12 +325,12 @@ const App: React.FC = () => {
                 <p className="text-[12px] font-black text-green-400 uppercase tracking-widest">OUTPUT: 1508 x 800 [GA-SEC-REPORT]</p>
                 <p className="text-[10px] opacity-40">GIORGIO ARMANI - MILANO</p>
              </div>
-             <button onClick={() => window.print()} className="bg-red-700 text-white px-12 py-4 font-black text-sm uppercase shadow-2xl hover:bg-red-800 transition-all border border-red-500">
-               CETAK LAPORAN
+             <button onClick={() => window.print()} className="bg-red-700 text-white px-12 py-4 font-black text-sm uppercase shadow-2xl hover:bg-red-800 transition-all border border-red-500 flex items-center gap-3">
+               <Printer size={18} /> CETAK LAPORAN
              </button>
           </div>
         </div>
-        <div className="w-[1508px] h-[800px] mt-20 shadow-[0_0_150px_rgba(0,0,0,1)] bg-white animate-in zoom-in duration-700">
+        <div className="w-[1508px] h-[800px] mt-20 shadow-[0_0_150px_rgba(0,0,0,1)] bg-white animate-in zoom-in duration-700 origin-top">
           <ReportDashboard />
         </div>
       </div>
@@ -341,7 +339,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#ebebeb] flex flex-col lg:flex-row gap-0 font-['Inter']">
-      <aside className="w-full lg:w-[450px] bg-[#0c0c0c] text-white p-10 overflow-y-auto h-screen sticky top-0 z-40 shadow-2xl no-print shrink-0 border-r border-white/10 custom-scroll">
+      <aside className="w-full lg:w-[450px] bg-[#0c0c0c] text-white p-10 overflow-y-auto lg:h-screen lg:sticky top-0 z-40 shadow-2xl no-print shrink-0 border-r border-white/10 custom-scroll">
         <div className="flex items-center gap-6 mb-10 border-b border-white/10 pb-8">
           <div className="w-16 h-16 bg-white flex items-center justify-center rounded-sm">
             <span className="text-black font-serif italic text-3xl font-black">GA</span>

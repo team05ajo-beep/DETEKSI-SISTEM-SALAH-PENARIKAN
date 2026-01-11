@@ -1,20 +1,15 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
 
-# Run and deploy your AI Studio app
+# Giorgio Armani - Internal System Detection Tool
 
-This contains everything you need to run your app locally.
+Luxury internal dashboard for system crash detection and account recovery management.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1hsHi9G4DpjmrAbMbJk7jVlcZztnFPZLx
+## Features
+- Real-time System Crash Analysis
+- Withdrawal Validation Node
+- Account Recovery Cycle Management
+- High-Fidelity Report Generation
 
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Setup
+1. Clone the repository
+2. Run `npm install`
+3. Run `npm run dev` to start the local development server
