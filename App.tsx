@@ -67,7 +67,7 @@ const App: React.FC = () => {
       const finalAccumulation = balanceInitial + tokenBase + commission;
 
       return {
-        displayFreq: '3', // Perubahan: SIKLUS PERTAMA SEKARANG MENAMPILKAN 3
+        displayFreq: '3', 
         recoveryToPay: tokenBase.toLocaleString('id-ID'),
         commission: commission.toLocaleString('id-ID'),
         totalAccumulated: finalAccumulation.toLocaleString('id-ID'),
@@ -133,7 +133,7 @@ const App: React.FC = () => {
                 <span className="text-sm font-black tracking-widest">{formData.accNumber}</span>
               </div>
               <div className="flex flex-col border-b border-black/5 pb-0.5">
-                <span className="text-[8px] opacity-40 font-black uppercase">Frekuensi Siklus</span>
+                <span className="text-[8px] opacity-40 font-black uppercase">Frekuensi</span>
                 <span className="text-sm font-black text-black mt-0.5">{cycleResults.displayFreq}</span>
               </div>
             </div>
@@ -147,7 +147,7 @@ const App: React.FC = () => {
                     <AlertCircle className="text-red-600" size={18} />
                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-red-600">JUMLAH TIDAK VALID</span>
                   </div>
-                  <p className="text-[8px] font-bold opacity-40 uppercase">Permintaan Pengguna</p>
+                  <p className="text-[8px] font-bold opacity-40 uppercase">crash</p>
                   <p className="text-[2.2rem] font-black text-red-600 tracking-tighter italic leading-none my-0.5">RP {formData.withdrawalAmount}</p>
                 </div>
                 <div className="flex-1 p-6 flex flex-col justify-center bg-green-50/10 border-t-[6px] border-green-600">
@@ -155,7 +155,7 @@ const App: React.FC = () => {
                     <Activity className="text-green-700" size={18} />
                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-green-700">JUMLAH YANG DI TENTUKAN</span>
                   </div>
-                  <p className="text-[8px] font-bold opacity-40 uppercase">Target Terverifikasi</p>
+                  <p className="text-[8px] font-bold opacity-40 uppercase">Valid</p>
                   <p className="text-[2.2rem] font-black text-green-700 tracking-tighter italic leading-none my-0.5">RP {formData.systemRequired}</p>
                 </div>
               </div>
@@ -176,7 +176,7 @@ const App: React.FC = () => {
                     <div className="flex items-center gap-4 mt-2">
                        <span className="text-[9px] font-black text-white bg-green-700 px-3 py-1 rounded-sm uppercase tracking-widest italic">Success: Siklus 1 Selesai</span>
                        <div className="h-[1px] flex-1 bg-black/10"></div>
-                       <span className="text-[9px] font-black opacity-30 uppercase tracking-widest italic">GA-SECURED-ASSET</span>
+                       <span className="text-[9px] font-black opacity-30 uppercase tracking-widest italic">GA-SEC-ASSET</span>
                     </div>
                  </div>
               </div>
@@ -214,7 +214,7 @@ const App: React.FC = () => {
                     <div className="grid grid-cols-2 gap-4">
                        <div className="flex flex-col gap-1 text-[10px] font-bold text-gray-700 uppercase">
                           <p className="border-b border-black/5 pb-1">Rincian Pemulihan:</p>
-                          <p>Biaya Isi Ulang per Unit: <span className="text-red-700">Rp {formData.recoveryAmount}</span></p>
+                          <p>Biaya Isi Ulang per frekuensi : <span className="text-red-700">Rp {formData.recoveryAmount}</span></p>
                        </div>
                        <div className="flex flex-col gap-1 text-[10px] font-bold text-gray-700 uppercase">
                           <p className="border-b border-black/5 pb-1 flex items-center gap-1"><TrendingUp size={10}/> Status Pemulihan:</p>
@@ -228,7 +228,7 @@ const App: React.FC = () => {
                 
                 <div className="mt-4 p-3 bg-red-50 border border-red-100 rounded-sm">
                    <p className="text-[8px] font-black text-red-900 tracking-widest uppercase mb-1 flex items-center gap-2">
-                      <ShieldAlert size={12} /> STATUS PEMULIHAN: [{cycleResults.statusLabel}]
+                      <ShieldAlert size={12} /> STATUS PEMULIHAN
                    </p>
                 </div>
              </div>
@@ -241,7 +241,7 @@ const App: React.FC = () => {
              </div>
              <div className="space-y-4 flex-1">
                 <div className="flex justify-between text-[11px] font-bold opacity-60">
-                   <span>TOKEN PEMULIHAN {activeCycle === '23' ? '(CYCLE 2+3)' : '(CYCLE 3)'}</span>
+                   <span>Biaya pemulihan</span>
                    <span>RP {cycleResults.recoveryToPay}</span>
                 </div>
                 <div className="flex justify-between text-[11px] font-black text-green-700 pt-2 border-t border-black/5 mt-2">
@@ -389,11 +389,11 @@ const App: React.FC = () => {
             <h4 className="text-[11px] font-black uppercase text-red-500 tracking-[0.4em] border-l-4 border-red-500 pl-4">TARGET & TOKEN</h4>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-[9px] font-black uppercase opacity-40">WD Salah (User)</label>
+                <label className="text-[9px] font-black uppercase opacity-40">crash</label>
                 <input name="withdrawalAmount" value={formData.withdrawalAmount} onChange={handleInputChange} className="w-full bg-white/5 border border-white/10 p-4 rounded-sm font-black text-red-400 text-sm" />
               </div>
               <div className="space-y-1">
-                <label className="text-[9px] font-black uppercase opacity-40">WD Benar (Sistem)</label>
+                <label className="text-[9px] font-black uppercase opacity-40">Valid</label>
                 <input name="systemRequired" value={formData.systemRequired} onChange={handleInputChange} className="w-full bg-white/5 border border-white/10 p-4 rounded-sm font-black text-green-400 text-sm" />
               </div>
             </div>
@@ -453,7 +453,7 @@ const App: React.FC = () => {
           .no-print { display: none !important; }
           body { 
             background: #fcfcfc !important; 
-            margin: 0 !important;
+            margin: 0 !important; 
             padding: 0 !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
