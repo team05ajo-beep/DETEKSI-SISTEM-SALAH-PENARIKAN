@@ -17,25 +17,23 @@ import {
   ShieldAlert,
   History,
   Coins,
-  Layers,
-  ChevronRight
+  Layers
 } from 'lucide-react';
 
 const App: React.FC = () => {
   const [isScreenshotMode, setIsScreenshotMode] = useState(false);
   const [activeCycle, setActiveCycle] = useState<'1' | '23'>('1');
   
-  // State data dengan nilai default sesuai contoh user
   const [formData, setFormData] = useState({
     name: 'KEN',
     bank: 'BANK BRI',
     accNumber: '015282821745153',
     contractCode: 'C79F-1T70-5QLL',
-    withdrawalAmount: '50.000.000', // Jumlah ditarik yang salah
-    systemRequired: '50.000.000',   // Target sistem per siklus
-    recoveryAmount: '50.000.000',   // Token pemulihan per unit
-    currentBalance: '150.000.000',  // Saldo awal sekali
-    cycleOneBalance: '125.000.000'  // Saldo setelah siklus 1 (Saldo Awal + Token + Komisi)
+    withdrawalAmount: '50.000.000',
+    systemRequired: '50.000.000',
+    recoveryAmount: '17.560.000',
+    currentBalance: '150.000.000',
+    cycleOneBalance: '125.000.000'
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,14 +43,12 @@ const App: React.FC = () => {
 
   const parseValue = (val: string) => parseInt(val.replace(/\./g, '')) || 0;
 
-  // Logika Perhitungan Dinamis Berdasarkan Siklus
   const cycleResults = useMemo(() => {
     const tokenBase = parseValue(formData.recoveryAmount);
     const balanceCycle1 = parseValue(formData.cycleOneBalance);
     const balanceInitial = parseValue(formData.currentBalance);
 
     if (activeCycle === '23') {
-      // SIKLUS 2+3 (GABUNGAN)
       const totalRecoveryPayment = tokenBase * 2;
       const commission = totalRecoveryPayment * 0.5;
       const finalAccumulation = balanceCycle1 + totalRecoveryPayment + commission;
@@ -66,7 +62,6 @@ const App: React.FC = () => {
         footerStatus: 'SIAP UNTUK PENARIKAN DANA'
       };
     } else {
-      // SIKLUS 1
       const commission = tokenBase * 0.5;
       const finalAccumulation = balanceInitial + tokenBase + commission;
 
@@ -90,7 +85,6 @@ const App: React.FC = () => {
 
   const ReportDashboard = () => (
     <div id="print-area" className="bg-[#fcfcfc] w-[1508px] h-[800px] flex flex-col font-['Inter'] text-black relative p-8 border-[1px] border-black/5 shadow-2xl overflow-hidden mx-auto box-border">
-      {/* HEADER LUXURY */}
       <header className="bg-white px-10 py-4 z-30 w-full shadow-sm mb-6 border border-black/5 rounded-sm flex flex-col items-center relative">
         <div className="w-full flex justify-between items-center mb-1 absolute top-4 left-0 px-10">
            <div className="flex flex-col gap-1 opacity-40">
@@ -120,7 +114,6 @@ const App: React.FC = () => {
 
       <div className="flex flex-col gap-5 flex-1 z-10 overflow-hidden">
         <div className="grid grid-cols-12 gap-5 h-[160px]">
-          {/* IDENTITAS PROFIL */}
           <div className="col-span-4 bg-white p-6 rounded-sm border-l-[8px] border-black shadow-md flex flex-col justify-center">
             <div className="flex justify-between items-center mb-3 border-b border-black/10 pb-1.5">
               <h5 className="font-black italic uppercase text-[10px] tracking-widest flex items-center gap-3">
@@ -148,7 +141,6 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          {/* AREA DINAMIS BERDASARKAN SIKLUS */}
           <div className="col-span-8 bg-white rounded-sm shadow-md flex relative overflow-hidden border-t-[6px] border-black">
             {activeCycle === '1' ? (
               <div className="w-full flex">
@@ -159,10 +151,6 @@ const App: React.FC = () => {
                   </div>
                   <p className="text-[8px] font-bold opacity-40 uppercase">Permintaan Pengguna</p>
                   <p className="text-[2.2rem] font-black text-red-600 tracking-tighter italic leading-none my-0.5">RP {formData.withdrawalAmount}</p>
-                  <div className="flex justify-between items-center mt-2 pt-1.5 border-t border-black/5">
-                    <span className="text-[8px] font-bold text-red-800 bg-red-50 px-1.5 py-0.5 rounded-sm">INVALID_PARAM</span>
-                    <span className="text-[8px] font-black opacity-30 italic">LOG: #GA-ERR-90</span>
-                  </div>
                 </div>
                 <div className="flex-1 p-6 flex flex-col justify-center bg-green-50/10 border-t-[6px] border-green-600">
                   <div className="flex items-center gap-3 mb-1">
@@ -171,10 +159,6 @@ const App: React.FC = () => {
                   </div>
                   <p className="text-[8px] font-bold opacity-40 uppercase">Target Terverifikasi</p>
                   <p className="text-[2.2rem] font-black text-green-700 tracking-tighter italic leading-none my-0.5">RP {formData.systemRequired}</p>
-                  <div className="flex justify-between items-center mt-2 pt-1.5 border-t border-black/5">
-                    <span className="text-[8px] font-bold text-green-800 bg-green-50 px-1.5 py-0.5 rounded-sm">KETENTUAN</span>
-                    <span className="text-[8px] font-black opacity-30 italic">Validated Mode</span>
-                  </div>
                 </div>
               </div>
             ) : (
@@ -202,7 +186,6 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* ANALISA & KETERANGAN PEMULIHAN */}
         <div className="grid grid-cols-12 gap-5 h-[210px]">
           <div className="col-span-8 bg-white p-6 border-l-[12px] border-red-700 shadow-lg flex gap-8 items-start">
              <div className="shrink-0 pt-1">
@@ -249,11 +232,6 @@ const App: React.FC = () => {
                    <p className="text-[8px] font-black text-red-900 tracking-widest uppercase mb-1 flex items-center gap-2">
                       <ShieldAlert size={12} /> STATUS PEMULIHAN: [{cycleResults.statusLabel}]
                    </p>
-                   <p className="text-[9px] text-red-800 leading-tight font-bold italic">
-                      {activeCycle === '1' 
-                        ? `AKUN BISNIS CRASH. UNTUK PEMULIHAN DATA, WAJIB MELAKUKAN ISI ULANG TOKEN SEBESAR RP ${cycleResults.recoveryToPay} KE AKUN BISNIS.`
-                        : `FREKUENSI 1 BERHASIL. LANJUTKAN PEMBAYARAN FREKUENSI 2 & 3 SEBESAR RP ${cycleResults.recoveryToPay} UNTUK MEMBUKA AKSES PENARIKAN.`}
-                   </p>
                 </div>
              </div>
           </div>
@@ -283,7 +261,6 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* STATUS SISTEM & SALDO AKUMULASI */}
         <div className="grid grid-cols-12 gap-5 flex-1 min-h-0 mb-2">
           <div className="col-span-7 bg-[#080808] text-white p-6 rounded-sm border-l-[16px] border-red-600 flex items-center gap-8 shadow-2xl relative overflow-hidden">
              <div className="shrink-0 flex flex-col items-center z-10">
@@ -332,8 +309,6 @@ const App: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      {/* WATERMARK */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[450px] font-serif italic opacity-[0.01] pointer-events-none select-none z-0 luxury-font leading-none">
         GA
       </div>
@@ -377,7 +352,6 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* SELECTOR SIKLUS */}
         <div className="mb-10 bg-white/5 p-2 rounded-sm border border-white/10 flex flex-col gap-2">
           <button onClick={() => setActiveCycle('1')} className={`flex items-center justify-between p-4 rounded-sm transition-all ${activeCycle === '1' ? 'bg-white text-black font-black' : 'text-white/60 hover:bg-white/10 font-bold'}`}>
             <div className="flex items-center gap-3">

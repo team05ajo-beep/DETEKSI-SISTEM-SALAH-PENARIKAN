@@ -1,5 +1,12 @@
 {
-  "name": "DETEKSI SISTEM SALAH PENARIKAN",
-  "description": "A luxury-themed internal tool for detecting system crashes and managing invalid withdrawal alerts with the Giorgio Armani brand aesthetic.",
-  "requestFramePermissions": []
+  "name": "Giorgio Armani System Detection",
+  "description": "Luxury internal tool for system crash detection and account recovery management.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "short_name": "GA-Detection",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }
